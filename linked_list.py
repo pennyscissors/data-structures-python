@@ -10,13 +10,14 @@ class SinglyLinkedList:
 
     def __str__(self):
         current = self.head
-        result = '['
+        result = ''
+            
         while current:
-            result += str(current.data)
+            result = f"{result}{str(current.data)}"
             current = current.next
-            result += ' -> ' if current else ']'
+            result = f"{result}{' -> ' if current else ''}"
 
-        return result
+        return f"[{result}]"
 
     def length(self):
         """Counts the number of nodes in the list.
