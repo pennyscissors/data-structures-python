@@ -6,6 +6,7 @@ class Node:
 class SinglyLinkedList:
     def __init__(self):
         self.head = None
+        self.tail = None
 
     def __str__(self):
         current = self.head
@@ -41,13 +42,29 @@ class SinglyLinkedList:
         """
         node = Node(data, self.head)
         self.head = node
+        if not self.tail:
+            self.tail = self.head
+
+    def insert_end(self, data):
+        """Insert node at the end of the list.
+
+        Args:
+            data: Data to be stored in the node.
+
+        """
+        node = Node(data)
+        self.tail.next = node
+        self.tail = node
+
 
 l = SinglyLinkedList()
 l.insert_start("1")
 l.insert_start("2")
 l.insert_start("3")
-l.insert_start("a")
-l.insert_start("b")
-l.insert_start("c")
+l.insert_end("a")
+l.insert_end("b")
+l.insert_end("c")
 
-print(l.length())
+print(l)
+print(l.head.data)
+print(l.tail.data)
