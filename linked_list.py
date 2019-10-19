@@ -16,3 +16,23 @@ class SinglyLinkedList:
             result += ' -> ' if current else ']'
 
         return result
+
+    def insert_start(self, data):
+        """Insert node at the beginning of the list.
+
+        Args:
+            data: Data to be stored in the node.
+
+        """
+        node = Node(data, self.head)
+        self.head = node
+
+l = SinglyLinkedList()
+l.insert_start("1")
+l.insert_start("2")
+l.insert_start("3")
+l.insert_start("a")
+l.insert_start("b")
+l.insert_start("c")
+
+print(l)
