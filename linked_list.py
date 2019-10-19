@@ -61,6 +61,17 @@ class SinglyLinkedList:
         if self.head:
             self.head = self.head.next
 
+    def delete_end(self):
+        """Delete last node in the list."""
+        current = self.head
+        while current:
+            if current.next == self.tail:
+                current.next = None
+                self.tail = current
+            else:
+                current = current.next
+
+
 l = SinglyLinkedList()
 l.insert_start("1")
 l.insert_start("2")
@@ -74,4 +85,5 @@ print(l)
 # print(l.tail.data)
 
 # l.delete_start()
+l.delete_end()
 print(l)
