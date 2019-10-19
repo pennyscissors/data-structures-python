@@ -10,15 +10,30 @@ class SinglyLinkedList:
     def __str__(self):
         current = self.head
         result = '['
-        while current is not None:
+        while current:
             result += str(current.data)
             current = current.next
             result += ' -> ' if current else ']'
 
         return result
 
+    def length(self):
+        """Counts the number of nodes in the list.
+        
+        Returns:
+            int: Number of nodes in the list.
+            
+        """
+        current = self.head
+        length = 0
+        while current:
+            length += 1
+            current = current.next
+
+        return length
+
     def insert_start(self, data):
-        """Insert node at the beginning of the list.
+        """Insert node at the start of the list.
 
         Args:
             data: Data to be stored in the node.
@@ -35,4 +50,4 @@ l.insert_start("a")
 l.insert_start("b")
 l.insert_start("c")
 
-print(l)
+print(l.length())
