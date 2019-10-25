@@ -4,33 +4,44 @@ class Node:
         self.next = next_
 
 class SinglyLinkedList:
-    def __init__(self):
+    def __init__(self, data_list=None):
         self.head = None
         self.tail = None
 
-    def __str__(self):
+        if data_list:
+            # Needs some input validation
+            for data in reversed(data_list):
+                self.insert_start(data)
+
+    def __iter__(self):
         current = self.head
-        result = ''
-            
-        while current:
-            result = f"{result}{str(current.data)}"
+        while current is not None:
+            yield current
             current = current.next
-            result = f"{result}{' -> ' if current else ''}"
 
-        return f"[{result}]"
+    def __repr__(self):
+        module = type(self).__module__
+        class_name = self.__class__.__name__
 
-    def length(self):
+        return f"{module}.{class_name}({str(self)})"
+
+    def __str__(self):
+        str_ = ''
+        for current in iter(self):
+            str_ = f"{str_}{', ' if str_ else ''}{current.data}"
+
+        return f"[{str_}]"
+
+    def __len__(self):
         """Counts the number of nodes in the list.
         
         Returns:
             int: Number of nodes in the list.
             
         """
-        current = self.head
         length = 0
-        while current:
+        for _ in iter(self):
             length += 1
-            current = current.next
 
         return length
 
@@ -64,27 +75,9 @@ class SinglyLinkedList:
 
     def delete_end(self):
         """Delete last node in the list."""
-        current = self.head
-        while current:
+        for current in iter(self):
             if current.next == self.tail:
                 current.next = None
                 self.tail = current
             else:
                 current = current.next
-
-
-l = SinglyLinkedList()
-l.insert_start("1")
-l.insert_start("2")
-l.insert_start("3")
-l.insert_end("a")
-l.insert_end("b")
-l.insert_end("c")
-
-print(l)
-# print(l.head.data)
-# print(l.tail.data)
-
-# l.delete_start()
-l.delete_end()
-print(l)
