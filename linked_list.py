@@ -1,7 +1,7 @@
 class Node:
     def __init__(self, data=None, next_=None):
         self.data = data
-        self.next = next_
+        self.next_ = next_
 
 class SinglyLinkedList:
     def __init__(self, data_list=None):
@@ -17,7 +17,7 @@ class SinglyLinkedList:
         current = self.head
         while current is not None:
             yield current
-            current = current.next
+            current = current.next_
 
     def __repr__(self):
         module = type(self).__module__
@@ -65,19 +65,19 @@ class SinglyLinkedList:
 
         """
         node = Node(data)
-        self.tail.next = node
+        self.tail.next_ = node
         self.tail = node
 
     def delete_start(self):
         """Delete first node in the list."""
         if self.head:
-            self.head = self.head.next
+            self.head = self.head.next_
 
     def delete_end(self):
         """Delete last node in the list."""
         for current in iter(self):
-            if current.next == self.tail:
-                current.next = None
+            if current.next_ == self.tail:
+                current.next_ = None
                 self.tail = current
             else:
-                current = current.next
+                current = current.next_
