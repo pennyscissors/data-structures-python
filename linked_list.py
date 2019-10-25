@@ -45,6 +45,63 @@ class SinglyLinkedList:
 
         return length
 
+    def __contains__(self, data):
+        """Search if the list contains a node with the data passed in.
+        
+        Args:
+            data: Data to search for.
+        
+        Returns:
+            True if data is found, False otherwise.
+
+        """
+        for current in iter(self):
+            if current.data == data:
+                return True
+        return False
+
+    def index(self, data):
+        """Get index of node containing the data passed in.
+
+        Args:
+            data: Data to search for and return its index.
+
+        Returns:
+            int: Index of the node where the data was found.
+
+        Raises:
+            ValueError: If data is not found.
+
+        """
+        for i, current in enumerate(iter(self)):
+            if current.data == data:
+                return i
+        raise ValueError(f"{data} is not in list")
+
+    def insert(self, data, index):
+        """Insert node with the given data at the given index
+        
+        Args:
+            data: Data to be inserted.
+            index (int): Index where the node with the data will be inserted.
+
+        Raises:
+            IndexError: If the index is greater than the length of the list.
+
+        """
+        length = len(self)
+        if index > length:
+            raise IndexError()
+        elif index == 0:
+            self.insert_start(data)
+        elif index == length:
+            self.insert_end(data)
+        else:
+            for i, current in enumerate(iter(self)):
+                if i == index - 1:
+                    node = Node(data, current.next_)
+                    current.next_ = node                    
+
     def insert_start(self, data):
         """Insert node at the start of the list.
 
