@@ -138,3 +138,7 @@ class SinglyLinkedList:
                 self.tail = current
             else:
                 current = current.next_
+
+
+def test_pytest_works():
+    return True
